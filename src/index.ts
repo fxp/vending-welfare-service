@@ -76,6 +76,8 @@ async function authorize(req: Request): Promise<Response> {
 
   const userId = String(b.user_id ?? "");
   const want = Math.trunc(Number(b.amount) || 0);
+  // 必须为正整数分：否则负数会让 held 变负、可用额虚增，击穿不透支（INV-12）
+  if (want <= 0) return json({ detail: `invalid_amount: ${b.amount}（须为正整数分）` }, 400);
   const allowPartial = b.allow_partial !== false;
   const acc = ACCOUNTS.get(userId);
   if (!acc) return json({ error: "account_not_found", user_id: userId }, 404);

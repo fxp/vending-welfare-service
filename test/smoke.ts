@@ -60,6 +60,12 @@ await reset();
 const ins = await authorize("u_1002", 715, false);
 check("不足非部分 → 402", ins.status === 402, ins);
 
+// 负数 amount 被拒（否则 held 变负、可用额虚增，击穿不透支）
+await reset();
+const neg = await authorize("u_1002", -9999, true);
+check("负数 amount → 400", neg.status === 400, neg);
+check("负数被拒后可用额不变(300)", avail(await balance("u_1002")) === 300);
+
 // 边界
 await reset();
 const nf = await call("GET", `${B}/accounts/u_999/balance`);
