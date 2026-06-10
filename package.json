@@ -1,0 +1,18 @@
+{
+  "name": "vending-welfare-service",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "企业福利账户参考服务（余额/冻结/部分抵扣/扣减）—— commerce-harness welfare 适配器的可部署端点",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "node --experimental-strip-types test/smoke.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241106.0",
+    "typescript": "^5.6.3",
+    "wrangler": "^3.90.0"
+  }
+}

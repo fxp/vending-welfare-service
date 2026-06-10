@@ -1,0 +1,9 @@
+name = "vending-welfare-service"
+main = "src/index.ts"
+compatibility_date = "2024-11-01"
+
+# 状态当前在进程内 Map（含 _reset 重置，契约测试足够）。生产持久化余额/冻结 → 绑 D1：
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "welfare"
+# database_id = "<运行 `wrangler d1 create welfare` 后填入>"
